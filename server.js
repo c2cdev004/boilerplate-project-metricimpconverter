@@ -11,6 +11,9 @@ var runner            = require('./test-runner');
 
 var app = express();
 
+const dotenv = require('dotenv');
+dotenv.config();
+
 app.use('/public', express.static(process.cwd() + '/public'));
 
 app.use(cors({origin: '*'})); //For FCC testing purposes only
@@ -21,6 +24,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //Index page (static HTML)
 app.route('/')
   .get(function (req, res) {
+
+    console.log(process.env.NODE_ENV)
+
     res.sendFile(process.cwd() + '/views/index.html');
   });
 
